@@ -40,22 +40,22 @@ function getWinner(playerMove,computerMove) {
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    if (playerMove === computerMove) 
-        {return 'you tied!';}
-    if (playerMove === 'rock') {
+    if (playerMove === computerMove) {
+        return 'you tied!';
+    } else if (playerMove === 'rock') {
             if (computerMove === 'scissors') {
-                return 'player wins with rock';
-            } else {return 'computer wins with paper';}
+                return 'player wins'; //with rock
+            } else {return 'computer wins';} //with paper
     } else if (playerMove === 'paper') {
         if (computerMove === 'scissors') {
-                return 'player wins with paper';
-            } else {return 'computer wins with scissors';}
+                return 'player wins'; //with paper
+            } else {return 'computer wins';} //with
     } else if (playerMove === 'scissors') {
         if (computerMove === 'paper') {
-                return 'player wins with paper';
-            } else {return 'computer wins with rock';}
+                return 'player wins'; //with scissors
+            } else {return 'computer wins';} //with rock
     } else {return "error: playerMove variable has an unexpected value of: " + playerMove;}
-    
+
 
     return "error with getWinner";
 }
@@ -64,8 +64,22 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+
+    while (playerWins < 5 && computerWins < 5) {
+        var result = getWinner(getPlayerMove(),getComputerMove());
+        switch (result) {
+            case "you tied!":
+                console.log(result + "\nYou have " + playerWins + " wins, and the computer has " + computerWins);
+                break;
+            case "player wins":
+                playerWins = playerWins + 1;
+                console.log(result + "\nYou have " + playerWins + " wins, and the computer has " + computerWins); 
+                break;
+            case "computer wins":
+                computerWins = computerWins + 1; 
+                console.log(result + "\nYou have " + playerWins + " wins, and the computer has " + computerWins);
+                break;
+        }
+    }
     return [playerWins, computerWins];
 }
-
